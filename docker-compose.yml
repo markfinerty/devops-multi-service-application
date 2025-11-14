@@ -1,0 +1,48 @@
+# Named volumes to store data from redis cache and mongodb
+volumes:
+  redis-data:
+  mongo-data:
+
+# Docker network that all services will use to communicate
+networks:
+  app-net:
+
+#
+services:
+  # --- API (Express) ---
+  api:
+    build: ./api
+    networks: [app-net]
+    expose:
+      - "3000"
+    restart: unless-stopped
+
+  # --- Nginx Reverse Proxy ---
+  nginx:
+    build:
+      context: .
+      dockerfile: nginx/Dockerfile
+    ports: ["80:80"]
+    depends_on:
+      - api
+    restart: unless-stopped
+    networks: [app-net]
+
+  # --- Redis Cache --- Choosing latest stable release. Using alpine for smaller image size.
+  redis:
+    image: "redis:alpine"
+    networks: [app-net]
+    command: ["redis-server", "--appendonly", "yes"]
+    ports: ["6379:6379"]
+    volumes:
+      - redis-data:/data
+    restart: unless-stopped
+
+  # --- MongoDB ----
+  mongodb:
+    image: "mongo:latest"
+    networks: [app-net]
+    ports: ["27017:27017"]
+    volumes:
+      - mongo-data:/db
+    restart: unless-stopped

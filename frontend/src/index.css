@@ -1,0 +1,114 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+/* Layout for the whole app */
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(
+    135deg,
+    rgba(36, 36, 36, 1) 0%,
+    rgba(20, 20, 20, 1) 100%
+  );
+  color: #fff;
+}
+
+/* Title */
+.app-title {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid #646cff;
+  padding-bottom: 0.5rem;
+}
+
+/* Form container */
+.app-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  width: min(90%, 400px);
+}
+
+/* Labels */
+.app-form label {
+  text-align: left;
+}
+
+/* Inputs */
+.app-input {
+  padding: 0.6em 1em;
+  border-radius: 6px;
+  border: 1px solid #444;
+  background-color: #2a2a2a;
+  color: #fff;
+}
+
+/* Button */
+.app-button {
+  margin-top: 1rem;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.8em 1.4em;
+  font-size: 1em;
+  font-weight: 600;
+  background-color: #646cff;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.app-button:hover {
+  background-color: #4a54e1;
+}
+
+/* Optional: tweak for light mode if you care */
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+
+  .app {
+    background: #f5f5f5;
+    color: #213547;
+  }
+
+  .app-form {
+    background-color: #ffffff;
+  }
+
+  .app-input {
+    background-color: #f5f5f5;
+    color: #213547;
+    border-color: #ccc;
+  }
+
+  .app-button {
+    background-color: #646cff;
+    color: #fff;
+  }
+}
